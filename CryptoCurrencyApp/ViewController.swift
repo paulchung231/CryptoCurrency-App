@@ -42,8 +42,6 @@ class ViewController: UITableViewController {
         
         super.viewDidLoad()
         view.backgroundColor = UIColor.init(red: 18.0/255, green: 28.0/255, blue: 50.0/255, alpha: 1)
-        navigationItem.title = "Cryptocurrency"
-//        navigationItem.titleView?.tintColor = UIColor.white //check this
         
 //        tableView.register(UITableViewCell.self, forCellReuseIdentifier: cellId)//took out to include a custom detail label
         
@@ -64,8 +62,6 @@ class ViewController: UITableViewController {
             guard let data = data else { return }
             do{
                 self.cryptoCurrencies = try JSONDecoder().decode([Crypto].self, from: data)
-//                print(self.cryptoCurrencies[0])
-//                print(String(self.cryptoCurrencies.count))
                 DispatchQueue.main.async {
                     self.tableView.reloadData()
                 }
@@ -73,6 +69,10 @@ class ViewController: UITableViewController {
                 print("Error serializing JSON:", jsonErr)
             }
         }.resume()
+
+        /*Comment back in if want to use custom CryptoCell class*/
+//        tableView.register(CryptoCell.self, forCellReuseIdentifier: CryptoCell.identifier)
+//        tableView.reloadData()
         
         /*Button to go to user profile page*/
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Profile", style: .plain, target: self, action: #selector(buttonAction))
@@ -97,23 +97,37 @@ class ViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, accessoryButtonTappedForRowWith indexPath: IndexPath) {
-//        doSomethingWithItem(indexPath.row)
         print(indexPath.row)
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 
+        /*To use the Crypto Custom cell, needs additional work*/
+//        let this_cell = tableView.dequeueReusableCell(withIdentifier: CryptoCell.identifier, for: indexPath) as! CryptoCell
+//        let priceOfCrypto = Double(cryptoCurrencies[indexPath.row].price_usd)
+//        this_cell.pass_this_crypto(crypto: cryptoCurrencies[indexPath.row])
+//        this_cell.label_price.text = "$" + String(format:"%.2f",priceOfCrypto!)
+//        this_cell.label_name.text = cryptoCurrencies[indexPath.row].name
+//        this_cell.backgroundColor = UIColor.init(red: 18.0/255, green: 28.0/255, blue: 50.0/255, alpha: 1)
+//        let bgColorView = UIView()
+//        bgColorView.backgroundColor = UIColor.init(red: 8.0/255, green: 18.0/255, blue: 40.0/255, alpha: 1)
+//        this_cell.selectedBackgroundView = bgColorView
+//        return this_cell
+        
+
 //        let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath)
+
         var cell = tableView.dequeueReusableCell(withIdentifier: cellId)
+        
         if cell == nil {
             cell = UITableViewCell(style: .value1, reuseIdentifier: cellId)
         }
-        
+
         let bgColorView = UIView()
         bgColorView.backgroundColor = UIColor.init(red: 8.0/255, green: 18.0/255, blue: 40.0/255, alpha: 1)
-        
+
         let priceOfCrypto = Double(cryptoCurrencies[indexPath.row].price_usd)
-        
+
         //formating the cells
         if let this_cell = cell {
             this_cell.detailTextLabel?.text = "$" + String(format:"%.2f",priceOfCrypto!)
@@ -125,22 +139,10 @@ class ViewController: UITableViewController {
             this_cell.layer.borderWidth = 0.3
             this_cell.layer.borderColor = UIColor.black.cgColor
             this_cell.selectedBackgroundView = bgColorView
-            
-            this_cell.accessoryType = .detailDisclosureButton
 
+//            this_cell.accessoryType = .detailDisclosureButton
         }
-        
-        
-        
-//        if(indexPath.row % 2 == 0)
-//        {
-//            cell!.backgroundColor = UIColor.init(red: 18.0/255, green: 28.0/255, blue: 50.0/255, alpha: 1)
-//        }
-//        else
-//        {
-//            cell!.backgroundColor = UIColor.init(red: 20.0/255, green: 30.0/255, blue: 52.0/255, alpha: 1)
-//        }
-        
+
         return cell!
     }
     
@@ -148,6 +150,11 @@ class ViewController: UITableViewController {
         let controller = MoreDataController()
         controller.setCryptoData(cryptoDataReference: cryptoCurrencies[indexPath.row])
         navigationController?.pushViewController(controller, animated: true)
+    }
+    
+    override public func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.title = "Cryptocurrency"
     }
 
 }
