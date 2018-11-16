@@ -8,9 +8,15 @@
 
 /* Begin PBXBuildFile section */
 		9F77BF5521843196006ECD4C /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9F77BF5421843196006ECD4C /* Default-568h@2x.png */; };
+		9FB881CD219379670005F43E /* CryptoDetailValues.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FB881CC219379670005F43E /* CryptoDetailValues.swift */; };
+		9FB881CF2193F0620005F43E /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FB881CE2193F0620005F43E /* LoginView.swift */; };
+		9FB881D12193F0760005F43E /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FB881D02193F0760005F43E /* SignUpView.swift */; };
+		9FB881D32193F08D0005F43E /* ResetPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FB881D22193F08D0005F43E /* ResetPasswordView.swift */; };
+		9FB881D62194029C0005F43E /* MainNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FB881D52194029C0005F43E /* MainNavigationController.swift */; };
 		9FC898E8218CF958001C52F4 /* ProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FC898E7218CF958001C52F4 /* ProfileController.swift */; };
 		9FC898EA218E597F001C52F4 /* CryptoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FC898E9218E597F001C52F4 /* CryptoCell.swift */; };
 		9FC898EC21919380001C52F4 /* CryptoDetailLabels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FC898EB21919380001C52F4 /* CryptoDetailLabels.swift */; };
+		9FED1A77219E9866003CD537 /* GlobalVars.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FED1A76219E9866003CD537 /* GlobalVars.swift */; };
 		DA00C3702018168B003C20D8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA00C36F2018168B003C20D8 /* AppDelegate.swift */; };
 		DA00C3722018168B003C20D8 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA00C3712018168B003C20D8 /* ViewController.swift */; };
 		DA00C3752018168B003C20D8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DA00C3732018168B003C20D8 /* Main.storyboard */; };
@@ -21,9 +27,15 @@
 
 /* Begin PBXFileReference section */
 		9F77BF5421843196006ECD4C /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		9FB881CC219379670005F43E /* CryptoDetailValues.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoDetailValues.swift; sourceTree = "<group>"; };
+		9FB881CE2193F0620005F43E /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		9FB881D02193F0760005F43E /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
+		9FB881D22193F08D0005F43E /* ResetPasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetPasswordView.swift; sourceTree = "<group>"; };
+		9FB881D52194029C0005F43E /* MainNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainNavigationController.swift; sourceTree = "<group>"; };
 		9FC898E7218CF958001C52F4 /* ProfileController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileController.swift; sourceTree = "<group>"; };
 		9FC898E9218E597F001C52F4 /* CryptoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoCell.swift; sourceTree = "<group>"; };
 		9FC898EB21919380001C52F4 /* CryptoDetailLabels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoDetailLabels.swift; sourceTree = "<group>"; };
+		9FED1A76219E9866003CD537 /* GlobalVars.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalVars.swift; sourceTree = "<group>"; };
 		DA00C36C2018168B003C20D8 /* TestApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TestApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DA00C36F2018168B003C20D8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DA00C3712018168B003C20D8 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -45,6 +57,37 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		9FB881CB2193755D0005F43E /* IndividualCryptos */ = {
+			isa = PBXGroup;
+			children = (
+				DA0C214C2021944300FB818A /* MoreDataController.swift */,
+				9FC898EB21919380001C52F4 /* CryptoDetailLabels.swift */,
+				9FC898E9218E597F001C52F4 /* CryptoCell.swift */,
+				9FB881CC219379670005F43E /* CryptoDetailValues.swift */,
+			);
+			path = IndividualCryptos;
+			sourceTree = "<group>";
+		};
+		9FB881D42193F0910005F43E /* UserSignIn */ = {
+			isa = PBXGroup;
+			children = (
+				9FB881CE2193F0620005F43E /* LoginView.swift */,
+				9FB881D02193F0760005F43E /* SignUpView.swift */,
+				9FB881D22193F08D0005F43E /* ResetPasswordView.swift */,
+			);
+			path = UserSignIn;
+			sourceTree = "<group>";
+		};
+		9FED1A75219E97B2003CD537 /* StoryboardsAssets */ = {
+			isa = PBXGroup;
+			children = (
+				DA00C3762018168B003C20D8 /* Assets.xcassets */,
+				DA00C3782018168B003C20D8 /* LaunchScreen.storyboard */,
+				DA00C3732018168B003C20D8 /* Main.storyboard */,
+			);
+			path = StoryboardsAssets;
+			sourceTree = "<group>";
+		};
 		DA00C3632018168A003C20D8 = {
 			isa = PBXGroup;
 			children = (
@@ -65,16 +108,15 @@
 		DA00C36E2018168B003C20D8 /* CryptoCurrencyApp */ = {
 			isa = PBXGroup;
 			children = (
-				DA00C36F2018168B003C20D8 /* AppDelegate.swift */,
+				9FED1A75219E97B2003CD537 /* StoryboardsAssets */,
+				9FB881D42193F0910005F43E /* UserSignIn */,
+				9FB881CB2193755D0005F43E /* IndividualCryptos */,
 				DA00C3712018168B003C20D8 /* ViewController.swift */,
-				DA00C3732018168B003C20D8 /* Main.storyboard */,
-				DA00C3762018168B003C20D8 /* Assets.xcassets */,
-				DA00C3782018168B003C20D8 /* LaunchScreen.storyboard */,
-				DA00C37B2018168B003C20D8 /* Info.plist */,
-				DA0C214C2021944300FB818A /* MoreDataController.swift */,
 				9FC898E7218CF958001C52F4 /* ProfileController.swift */,
-				9FC898E9218E597F001C52F4 /* CryptoCell.swift */,
-				9FC898EB21919380001C52F4 /* CryptoDetailLabels.swift */,
+				DA00C37B2018168B003C20D8 /* Info.plist */,
+				DA00C36F2018168B003C20D8 /* AppDelegate.swift */,
+				9FED1A76219E9866003CD537 /* GlobalVars.swift */,
+				9FB881D52194029C0005F43E /* MainNavigationController.swift */,
 			);
 			path = CryptoCurrencyApp;
 			sourceTree = "<group>";
@@ -153,10 +195,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				DA00C3722018168B003C20D8 /* ViewController.swift in Sources */,
+				9FB881CD219379670005F43E /* CryptoDetailValues.swift in Sources */,
 				DA0C214D2021944300FB818A /* MoreDataController.swift in Sources */,
+				9FB881D62194029C0005F43E /* MainNavigationController.swift in Sources */,
+				9FED1A77219E9866003CD537 /* GlobalVars.swift in Sources */,
 				9FC898EA218E597F001C52F4 /* CryptoCell.swift in Sources */,
 				DA00C3702018168B003C20D8 /* AppDelegate.swift in Sources */,
 				9FC898EC21919380001C52F4 /* CryptoDetailLabels.swift in Sources */,
+				9FB881CF2193F0620005F43E /* LoginView.swift in Sources */,
+				9FB881D32193F08D0005F43E /* ResetPasswordView.swift in Sources */,
+				9FB881D12193F0760005F43E /* SignUpView.swift in Sources */,
 				9FC898E8218CF958001C52F4 /* ProfileController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

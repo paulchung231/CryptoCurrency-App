@@ -47,9 +47,38 @@ class MoreDataController: UIViewController {
     }
     
     @objc func addToPortfolio(sender: UIButton!) {
-        print("maxY:", view.frame.maxY)
-        print("maxX:", view.frame.maxX)
-        print(" + ")
+//        print("maxY:", view.frame.maxY)
+//        print("maxX:", view.frame.maxX)
+//        print("In moreData: ", savedCryptos)
+        let title_alert = (cryptoDetails?.name)! + " was saved"
+        let alert = UIAlertController(title: title_alert,
+                                      message: "",
+                                      preferredStyle: .alert)
+        
+//        let saveAction = UIAlertAction(title: "Save",
+//                                       style: .default) {
+//                                        [unowned self] action in
+//
+//                                        guard let textField = alert.textFields?.first,
+//                                            let nameToSave = textField.text else {
+//                                                return
+//                                        }
+        
+//        }
+        global.savedCryptos.append(self.cryptoDetails!)
+        let okAction = UIAlertAction(title: "Ok", style: .default)
+        let cancelAction = UIAlertAction(title: "Cancel",
+                                         style: .cancel, handler: { (action: UIAlertAction!) in
+                                            print("Handle Cancel Logic here")
+        })
+        
+//        alert.addTextField()
+    
+//        alert.addAction(saveAction)
+        alert.addAction(cancelAction)
+        alert.addAction(okAction)
+        
+        present(alert, animated: true)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -66,27 +95,37 @@ class MoreDataController: UIViewController {
     }
     
     func showDetails(this_crypto:Crypto){
-        let rank_label = CryptoDetailLabels(frame: CGRect(x: 10, y: ((view.frame.maxY/2) + 10), width: view.frame.maxX - 10, height: 20))
+        let rank_label = CryptoDetailLabels(frame: CGRect(x: (view.frame.maxX/2), y: ((view.frame.maxY/2) + 10), width: 100, height: 20))
+        let rank_value = CryptoDetailValues(frame: CGRect(x: (view.frame.maxX/2), y: ((view.frame.maxY/2) + rank_label.frame.size.height + 15), width: view.frame.maxX - 10, height: 20))
+//        rank_label.backgroundColor = UIColor.red
         
-        let max_supply_label = CryptoDetailLabels(frame: CGRect(x: 10, y: ((view.frame.maxY/2) + rank_label.frame.size.height + 10), width: view.frame.maxX - 10, height: 20))
+        let max_supply_label = CryptoDetailLabels(frame: CGRect(x: 10, y: ((view.frame.maxY/2) + 10), width: 100, height: 20))
+        let max_supply_value = CryptoDetailValues(frame: CGRect(x: 10, y: ((view.frame.maxY/2) + rank_label.frame.size.height + 15), width: view.frame.maxX - 10, height: 20))
+//            CryptoDetailLabels(frame: CGRect(x: 10, y: ((view.frame.maxY/2) + rank_label.frame.size.height + 10), width: view.frame.maxX - 10, height: 20))
 //        let id_label =
 //        let name_label
 //        let symbol_label
 //        let price_btc_label = CryptoDetailLabels(frame: CGRect(x: 10, y: ((view.frame.maxY/2) + 20), width: view.frame.maxX - 10, height: 20))
 //        let market_cap_usd_label = CryptoDetailLabels(frame: CGRect(x: 10, y: ((view.frame.maxY/2) + 25), width: view.frame.maxX - 10, height: 20))
 //        let available_supply_label = CryptoDetailLabels(frame: CGRect(x: 10, y: ((view.frame.maxY/2) + 5), width: view.frame.maxX - 10, height: 20))
-        let total_supply_label = CryptoDetailLabels(frame: CGRect(x: 10, y: ((view.frame.maxY/2) + (2 * rank_label.frame.size.height) + 10), width: view.frame.maxX - 10, height: 20))
+        let total_supply_label = CryptoDetailLabels(frame: CGRect(x: 10, y: ((view.frame.maxY/2) + (2 * rank_label.frame.size.height) + 30), width: view.frame.maxX - 10, height: 20))
 //        let percent_change_1h_label = CryptoDetailLabels(frame: CGRect(x: 10, y: ((view.frame.maxY/2) + 5), width: view.frame.maxX - 10, height: 20))
 //        let percent_change_24h_label = CryptoDetailLabels(frame: CGRect(x: 10, y: ((view.frame.maxY/2) + 5), width: view.frame.maxX - 10, height: 20))
 //        let percent_change_7d_label = CryptoDetailLabels(frame: CGRect(x: 10, y: ((view.frame.maxY/2) + 5), width: view.frame.maxX - 10, height: 20))
 //        let last_updated_label = CryptoDetailLabels(frame: CGRect(x: 10, y: ((view.frame.maxY/2) + 5), width: view.frame.maxX - 10, height: 20))
 //        max_supply_label.backgroundColor = UIColor.red
-        if let this_max_supply = this_crypto.max_supply { max_supply_label.text = "Max supply: " + this_max_supply } else { max_supply_label.text = "Max supply: N/A" }
-        rank_label.text = "Rank #" + this_crypto.rank
-        total_supply_label.text = "Total Supply: " + this_crypto.total_supply
+//        if let this_max_supply = this_crypto.max_supply { max_supply_label.text = "Max supply: " + this_max_supply } else { max_supply_label.text = "Max supply: N/A" }
+        rank_label.text = "Rank"
+        rank_value.text = "#" + this_crypto.rank
+        max_supply_label.text = "Max Supply"
+        if let this_max_supply = this_crypto.max_supply { max_supply_value.text = String(format:"%.2f",Double(this_max_supply)!) } else { max_supply_value.text = " " }
+        total_supply_label.text = "Total Supply"
         
         self.view.addSubview(rank_label)
+        self.view.addSubview(rank_value)
         self.view.addSubview(max_supply_label)
+        self.view.addSubview(max_supply_value)
         self.view.addSubview(total_supply_label)
     }
 }
+

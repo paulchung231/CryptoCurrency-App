@@ -1,15 +1,15 @@
 //
-//  CryptoDetailLabels.swift
+//  CryptoDetailValues.swift
 //  TestApp
 //
-//  Created by Paul Chung on 11/6/18.
+//  Created by Paul Chung on 11/7/18.
 //  Copyright © 2018 Paul Chung. All rights reserved.
 //
 
 import Foundation
 import UIKit
 
-class CryptoDetailLabels:UILabel{
+class CryptoDetailValues:UILabel{
     required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)!
         commonInit()
@@ -21,7 +21,8 @@ class CryptoDetailLabels:UILabel{
     }
     
     func commonInit(){
-        self.textColor = UIColor.init(red: 189.0/255, green: 199.0/255, blue: 193.0/55, alpha: 0.75)
+        self.textColor = UIColor(red: 255/255, green: 255/255, blue: 255/255, alpha: 0.9)
+        self.font = self.font.withSize(17)
     }
-
+    
 }
