@@ -86,6 +86,7 @@ class ViewController: UITableViewController {
     
     @objc func buttonAction(sender: UIButton!) {
         let controller = ProfileController()
+        global.savedCryptos.append(global.cryptoCurrencies[0])
         navigationController?.pushViewController(controller, animated: true)
         print("Profile tapped")
     }
@@ -152,7 +153,6 @@ class ViewController: UITableViewController {
             this_cell.layer.borderColor = UIColor.black.cgColor
             this_cell.selectedBackgroundView = bgColorView
 
-//            this_cell.accessoryType = .detailDisclosureButton
         }
         
         return cell!

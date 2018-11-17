@@ -75,31 +75,69 @@ class ProfileController: UIViewController, UITableViewDelegate, UITableViewDataS
 }
 
 class SavedCryptosCell:UITableViewCell{
-    var this_crypto:Crypto?
+    var price_label:UILabel!
+    var name_label:UILabel!
+    var percent_change_label:UILabel!
+    var rank_label:UILabel!
+    let padding: CGFloat = 10
+
+    var this_crypto:Crypto?{
+        didSet{
+            if let c = this_crypto {
+                let priceOfCrypto = Double(c.price_usd)
+                let percentChange = Double(c.percent_change_24h)
+
+                rank_label.text = c.rank
+                name_label.text = c.name
+                price_label.text = "$" + String(format:"%.2f",priceOfCrypto!)
+                percent_change_label.text = c.percent_change_24h + "%"
+                if percentChange! >= 0.0 { percent_change_label.textColor = UIColor(red: 0/255, green: 229/255, blue: 95/255, alpha: 1.0) } else { percent_change_label.textColor = UIColor(red: 219/255, green: 0/255, blue: 47/255, alpha: 1.0) }
+                setNeedsLayout()
+            }
+        }
+    }
+    
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         backgroundColor = UIColor(red: 40.0/255, green: 50.0/255, blue: 72.0/255, alpha: 1)
         self.layer.borderWidth = 0.3
         self.layer.borderColor = UIColor.white.cgColor
         
-        guard let name = this_crypto?.name else { return }
-        guard let price = this_crypto?.price_usd else { return }
-        guard let percent = this_crypto?.percent_change_24h else { return }
-        guard let ranking = this_crypto?.rank else { return }
-        let priceOfCrypto = Double(price)
-        let percent_change = Double(percent)
-        //formating the cells
-        let pad_num = 8 - (price).count
-        let percent_change_24hr = ((percent) + "%").padding(toLength: (14 + pad_num), withPad: " ", startingAt: 0) + "$" + String(format:"%.2f",priceOfCrypto!)
-        self.detailTextLabel?.text = percent_change_24hr
-        if percent_change! >= 0.0 { self.detailTextLabel?.textColor = UIColor(red: 0/255, green: 229/255, blue: 95/255, alpha: 1.0) } else { self.detailTextLabel?.textColor = UIColor(red: 219/255, green: 0/255, blue: 47/255, alpha: 1.0) }
-        self.detailTextLabel?.alpha = 0.7
-        self.detailTextLabel?.font = UIFont(name: "HelveticaNeue-Bold", size: 17)
-            //            let padded_text = (global.cryptoCurrencies[indexPath.row].rank).padding(toLength: 8, withPad: " ", startingAt: 0) + ("(" + global.cryptoCurrencies[indexPath.row].symbol + ") ") + global.cryptoCurrencies[indexPath.row].name
-        self.textLabel?.text = (ranking).padding(toLength: 8, withPad: " ", startingAt: 0) + name
-        self.textLabel?.textColor = UIColor.init(red: 189.0/255, green: 199.0/255, blue: 193.0/55, alpha: 1.0)
-        self.textLabel?.font = UIFont.systemFont(ofSize: 15)
+        rank_label = UILabel(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
+        rank_label.textAlignment = .left
+        rank_label.textColor = UIColor.white
+        rank_label.backgroundColor = .clear
+        contentView.addSubview(rank_label)
         
+        name_label = UILabel(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
+        name_label.textAlignment = .left
+        name_label.textColor = UIColor.init(red: 189.0/255, green: 199.0/255, blue: 193.0/55, alpha: 1.0)
+        name_label.backgroundColor = .clear
+        contentView.addSubview(name_label)
+        
+        price_label = UILabel(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
+        price_label.textAlignment = .right
+        price_label.textColor = UIColor.white
+        price_label.backgroundColor = .clear
+        price_label.alpha = 0.7
+        price_label.font = UIFont(name: "HelveticaNeue-Bold", size: 17)
+        contentView.addSubview(price_label)
+
+        percent_change_label = UILabel(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
+        percent_change_label.textAlignment = .right
+        percent_change_label.backgroundColor = .clear
+        percent_change_label.alpha = 0.7
+        percent_change_label.font = UIFont(name: "HelveticaNeue-Bold", size: 15)
+        contentView.addSubview(percent_change_label)
+        
+    }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        rank_label.frame = CGRect(x: padding, y: 0, width: (frame.width - padding), height: frame.height)
+        name_label.frame = CGRect(x: (rank_label.frame.minX + (padding*3)), y: 0, width: (frame.width - (rank_label.frame.minX + (padding*3))), height: frame.height)
+        price_label.frame = CGRect(x: 0, y: 0, width: frame.width - padding, height: frame.height/2)
+        percent_change_label.frame = CGRect(x: 0, y: price_label.frame.maxY, width: frame.width - padding, height: frame.height/2)
     }
     
     required init?(coder aDecoder: NSCoder) {
